@@ -9,6 +9,8 @@ https://docs.djangoproject.com/en/5.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
+import dj_database_url
+import os
 
 from pathlib import Path
 
@@ -44,6 +46,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -85,17 +88,10 @@ WSGI_APPLICATION = 'ecommerce_backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ecomerce_db', 
-        'USER': 'root', 
-        'PASSWORD': '70976074',  
-        'HOST': 'localhost',
-        'PORT': '',  
-        'OPTIONS': {
-            'unix_socket': '/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock',
-        },
-    }
+    'default': dj_database_url.config(
+        default='postgresql://db_ecomerce_5d5k_user:zsPpYz6Dp1KsiDpM6dKmRbJmvHU31bdN@dpg-cqdhvq08fa8c73dlbmig-a.oregon-postgres.render.com/db_ecomerce_5d5k',
+        conn_max_age=600
+    )
 }
 
 
@@ -137,6 +133,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+if not DEBUG:
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
