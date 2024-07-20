@@ -15,7 +15,7 @@ class ProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Producto
         fields = '__all__'  # Incluye todos los campos, incluyendo categoria y costo
-
+        
 class ClienteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Cliente

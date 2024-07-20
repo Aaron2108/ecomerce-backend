@@ -87,11 +87,11 @@ WSGI_APPLICATION = 'ecommerce_backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ecommerce_db',  # Asegúrate de que esta base de datos exista
-        'USER': 'root',  # Usuario de MySQL en XAMPP
-        'PASSWORD': '',  # Contraseña de MySQL en XAMPP
+        'NAME': 'ecomerce_db', 
+        'USER': 'root', 
+        'PASSWORD': '70976074',  
         'HOST': 'localhost',
-        'PORT': '',  # Deja esto vacío si usas el socket
+        'PORT': '',  
         'OPTIONS': {
             'unix_socket': '/Applications/XAMPP/xamppfiles/var/mysql/mysql.sock',
         },
