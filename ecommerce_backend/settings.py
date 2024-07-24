@@ -61,6 +61,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "https://ecomerce-detallazo-git-main-aaron2108s-projects.vercel.app"
 ]
 
 CORS_ALLOW_CREDENTIALS = True
